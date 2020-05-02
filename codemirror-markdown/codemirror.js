@@ -5,9 +5,9 @@ import CodeMirror from 'codemirror'
 import * as Y from 'yjs'
 import { WebsocketProvider } from 'y-websocket'
 import { CodemirrorBinding } from 'y-codemirror'
-import 'codemirror/mode/gfm/gfm';
+import 'codemirror/mode/gfm/gfm'
 
-var md = require('markdown-it')('commonmark');
+var md = require('markdown-it')('commonmark')
 
 window.addEventListener('load', () => {
   const ydoc = new Y.Doc()
@@ -19,21 +19,24 @@ window.addEventListener('load', () => {
   const yText = ydoc.getText('codemirror')
   const editorContainer = document.createElement('div')
   editorContainer.setAttribute('id', 'editor')
-  document.body.insertBefore(editorContainer, null)
+  
+  var main = document.getElementById('main')
+  main.append(editorContainer)
   
   const renderedContainer = document.createElement('div')
   renderedContainer.setAttribute('id', 'rendered')
-  document.body.insertBefore(renderedContainer, null)
+  main.append(renderedContainer)
 
   const editor = CodeMirror(editorContainer, {
     mode: 'gfm',
     lineNumbers: true
   })
-  
+  editor.setSize("100%", "100%")
+
   ydoc.on('update', function() {
-    var result = md.render(editor.getValue());
-    renderedContainer.innerHTML = result;
-  });
+    var result = md.render(editor.getValue())
+    renderedContainer.innerHTML = result
+  })
 
   const binding = new CodemirrorBinding(yText, editor, provider.awareness)
 
