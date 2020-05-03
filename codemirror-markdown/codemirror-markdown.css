@@ -35,7 +35,17 @@
   transition-delay: 0s;
 }
 
+#main {
+  display: flex;
+  width: 100%;
+}
+
 #editor, #rendered {
-  width: 50%;
-  float: left;
+  flex: 1;
+  overflow-x: scroll;
+}
+
+#rendered {
+  overflow-wrap: break-word;
+  margin-left: 20px;
 }

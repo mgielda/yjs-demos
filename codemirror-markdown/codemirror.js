@@ -29,7 +29,8 @@ window.addEventListener('load', () => {
 
   const editor = CodeMirror(editorContainer, {
     mode: 'gfm',
-    lineNumbers: true
+    lineNumbers: true,
+    lineWrapping: true
   })
   editor.setSize("100%", "100%")
 
